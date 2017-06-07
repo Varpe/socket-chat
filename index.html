@@ -38,7 +38,7 @@
           <div id="messageArea" class="row">
               <div class="col-md-4">
                   <div class="well">
-                      <h3>Käyttäjät Online</h3>
+                      <h3 id="uzers">Käyttäjiä Online: </h3>
                       <ul class="list-group" id="users"></ul>
                   </div>
               </div>
@@ -70,6 +70,7 @@
               var $userForm = $('#userForm');
               var $users = $('#users');
               var $username = $('#username');
+              var $uzers = $('#uzers');
 
               $messageForm.submit(function(e){
                   e.preventDefault();
@@ -94,11 +95,13 @@
 
               socket.on('get users', function(data){
                 var html = '';
+                var maara = data.length;
                 for(i=0; i < data.length; i++){
                   html += '<li class="list-group-item">'+data[i]+'</li>';
 
                 }
                 $users.html(html);
+                $uzers.html('Käyttäjiä online: '+maara);
               });
           });
       </script>
